@@ -309,6 +309,135 @@ gato.hacerSonido();`,
     explanation:
       "Extiende una clase base para crear una subclase que hereda sus propiedades y métodos. La herencia permite que una clase nueva reutilice y extienda la funcionalidad de una clase existente, promoviendo la reutilización del código y facilitando la creación de estructuras jerárquicas de clases.",
   },
+  {
+    title: "31. Manejo de async y await",
+    code: `async function obtenerDatos() {
+    let datos = await promesa;
+    console.log(datos);
+}
+
+obtenerDatos();`,
+    explanation:
+      "`async` y `await` simplifican el manejo de promesas, permitiendo escribir código asincrónico que se parece al código sincrónico. En este ejemplo, `await` se utiliza para esperar a que la promesa se resuelva antes de continuar con la ejecución de la función.",
+  },
+  {
+    title: "32. Manejo de errores con try...catch",
+    code: `async function obtenerDatosSeguro() {
+    try {
+        let datos = await promesa;
+        console.log(datos);
+    } catch (error) {
+        console.log("Error: " + error);
+    }
+}
+
+obtenerDatosSeguro();`,
+    explanation:
+      "El bloque `try...catch` permite manejar errores en operaciones asincrónicas que pueden fallar. Si la promesa rechaza, el flujo de ejecución pasa automáticamente al bloque `catch`, donde puedes manejar el error.",
+  },
+  {
+    title: "33. Uso de un alias de tipo (Type Alias)",
+    code: `type Punto = {
+    x: number;
+    y: number;
+};
+
+let punto1: Punto = { x: 10, y: 20 };
+console.log(punto1);`,
+    explanation:
+      "Los alias de tipo permiten crear nombres personalizados para tipos complejos. En este ejemplo, `Punto` es un alias para un objeto con propiedades `x` e `y`.",
+  },
+  {
+    title: "34. Uso de tipos de unión (Union Types)",
+    code: `function imprimirId(id: number | string) {
+    console.log("El ID es: " + id);
+}
+
+imprimirId(123);
+imprimirId("ABC123");`,
+    explanation:
+      "Los tipos de unión permiten que una variable acepte múltiples tipos. Aquí, la función `imprimirId` acepta un número o una cadena, mostrando flexibilidad en el manejo de diferentes tipos de datos.",
+  },
+  {
+    title: "35. Uso de la palabra clave never",
+    code: `function generarError(mensaje: string): never {
+    throw new Error(mensaje);
+}
+
+try {
+    generarError("Algo salió mal");
+} catch (error) {
+    console.log(error.message);
+}`,
+    explanation:
+      "`never` indica que una función no puede finalizar correctamente (por ejemplo, lanza un error). En este caso, `generarError` lanza una excepción que es capturada en un bloque `try...catch`.",
+  },
+  {
+    title: "36. Uso de readonly para propiedades inmutables",
+    code: `class Libro {
+    readonly titulo: string;
+
+    constructor(titulo: string) {
+        this.titulo = titulo;
+    }
+}
+
+let libro1 = new Libro("TypeScript Básico");
+// libro1.titulo = "Otro título"; // Error: no se puede asignar a 'titulo' porque es una propiedad de solo lectura.
+console.log(libro1.titulo);`,
+    explanation:
+      "`readonly` hace que una propiedad de una clase sea inmutable después de su inicialización. Aquí, `titulo` solo puede ser establecido en el constructor y no se puede cambiar posteriormente.",
+  },
+  {
+    title: "37. Definir tipos con type e interface",
+    code: `type Coordenada = {
+    latitud: number;
+    longitud: number;
+};
+
+interface Direccion {
+    calle: string;
+    ciudad: string;
+}
+
+let ubicacion: Coordenada & Direccion = {
+    latitud: 40.7128,
+    longitud: -74.0060,
+    calle: "Wall Street",
+    ciudad: "New York"
+};
+
+console.log(ubicacion);`,
+    explanation:
+      "Este ejemplo combina un `type` (`Coordenada`) y una `interface` (`Direccion`) usando el operador `&` para crear un objeto `ubicacion` que tiene propiedades de ambos.",
+  },
+  {
+    title: "38. Uso de optional chaining",
+    code: `let usuario3: { nombre?: string } = {};
+console.log(usuario3?.nombre?.toUpperCase());`,
+    explanation:
+      "El optional chaining (`?.`) permite acceder a propiedades de un objeto de forma segura, evitando errores si la propiedad o el objeto no existen.",
+  },
+  {
+    title: "39. Uso de nullish coalescing",
+    code: `let entrada = undefined;
+let valorPredeterminado = "Valor por defecto";
+let valorFinal = entrada ?? valorPredeterminado;
+console.log(valorFinal);`,
+    explanation:
+      "El operador `??` devuelve el operando derecho si el izquierdo es `null` o `undefined`. Aquí, `valorFinal` toma `valorPredeterminado` porque `entrada` es `undefined`.",
+  },
+  {
+    title: "40. Usa parámetros por defecto en funciones",
+    code: `function multiplicar(a: number, b: number = 2): number {
+    return a * b;
+}
+
+console.log(multiplicar(5));  // 5 * 2 = 10
+console.log(multiplicar(5, 3));  // 5 * 3 = 15`,
+    explanation:
+      "Los parámetros por defecto permiten que una función use un valor predeterminado si no se proporciona un argumento. En este caso, `b` tiene un valor por defecto de 2, por lo que si solo se pasa un argumento, `b` se inicializa a 2.",
+  },
   // Nivel Avanzado (Ejercicios 41-60)
   {
     title: "41. Uso de spread operator en objetos",
