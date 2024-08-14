@@ -1,5 +1,4 @@
-"use client"; // Indica que este es un Client Component
-
+'use client'
 import React, { useState } from 'react';
 
 interface CardProps {
@@ -15,7 +14,7 @@ const Card: React.FC<CardProps> = ({ title, code, explanation }) => {
     navigator.clipboard.writeText(code)
       .then(() => {
         setCopied(true);
-        setTimeout(() => setCopied(false), 2000); // Oculta el mensaje después de 2 segundos
+        setTimeout(() => setCopied(false), 1000); // Oculta el mensaje después de 1 segundos
       })
       .catch(err => {
         console.error('Error al copiar el código: ', err);
@@ -23,23 +22,23 @@ const Card: React.FC<CardProps> = ({ title, code, explanation }) => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto bg-white shadow-md rounded-lg overflow-hidden mb-6">
+    <div className="bg-white shadow-lg rounded-lg overflow-hidden mb-8 border border-gray-200">
       <div className="p-6 relative">
-        <h2 className="text-xl font-semibold mb-2">{title}</h2>
+        <h2 className="text-2xl font-semibold text-primary mb-3">{title}</h2>
         <div className="relative">
-          <pre className="bg-gray-100 p-4 rounded-md overflow-x-auto">
-            <code className="font-thin text-sm text-red-900">{code}</code>
+          <pre className="bg-gray-900 text-white p-4 rounded overflow-x-auto">
+            <code className="font-mono text-sm">{code}</code>
           </pre>
           <button
             onClick={handleCopy}
-            className="absolute top-2 right-2  bg-gray-200 text-gray-700 rounded-md  hover:bg-gray-300"
+            className="absolute top-3 right-3 bg-gray-500 text-gray-700 rounded-md p-1 hover:bg-gray-300"
             title="Copiar al portapapeles"
           >
             📋
           </button>
         </div>
         {copied && (
-          <div className="absolute top-2 right-2 mt-8 bg-gray-500 text-white text-sm py-1 px-3 rounded-md shadow-md">
+          <div className="absolute top-3 right-3 mt-8 bg-red-500 text-white text-sm py-1 px-3 rounded-md shadow-md">
             Código copiado!
           </div>
         )}
