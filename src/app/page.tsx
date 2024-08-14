@@ -1,60 +1,69 @@
-import type { NextPage } from 'next';
-import Card from './components/Card';
+import type { NextPage } from "next";
+import Card from "./components/Card";
 
 const exercises = [
   {
     title: "1. Imprimir un mensaje en la consola",
     code: `console.log("Hola, TypeScript!");`,
-    explanation: "Este es el primer paso básico: mostrar un mensaje en la consola. Este método es fundamental para la depuración y para verificar que tu entorno de desarrollo está funcionando correctamente.",
+    explanation:
+      "Este es el primer paso básico: mostrar un mensaje en la consola. Este método es fundamental para la depuración y para verificar que tu entorno de desarrollo está funcionando correctamente.",
   },
   {
     title: "2. Declarar una variable de tipo string",
     code: `let mensaje: string = "Hola, mundo";
 console.log(mensaje);`,
-    explanation: "Declara una variable mensaje de tipo string y muestra su valor. Las variables de tipo string se utilizan para almacenar y manipular texto en tu aplicación.",
+    explanation:
+      "Declara una variable mensaje de tipo string y muestra su valor. Las variables de tipo string se utilizan para almacenar y manipular texto en tu aplicación.",
   },
   {
     title: "3. Declarar una variable de tipo number",
     code: `let numero: number = 42;
 console.log(numero);`,
-    explanation: "Declara una variable numero de tipo number y muestra su valor. Las variables de tipo number se usan para almacenar valores numéricos que pueden ser utilizados en cálculos y operaciones matemáticas.",
+    explanation:
+      "Declara una variable numero de tipo number y muestra su valor. Las variables de tipo number se usan para almacenar valores numéricos que pueden ser utilizados en cálculos y operaciones matemáticas.",
   },
   {
     title: "4. Declarar una variable de tipo boolean",
     code: `let esVerdadero: boolean = true;
 console.log(esVerdadero);`,
-    explanation: "Declara una variable esVerdadero de tipo boolean y muestra su valor. Las variables de tipo boolean representan valores de verdad, como verdadero o falso, y son útiles en la lógica de control de flujo en la programación.",
+    explanation:
+      "Declara una variable esVerdadero de tipo boolean y muestra su valor. Las variables de tipo boolean representan valores de verdad, como verdadero o falso, y son útiles en la lógica de control de flujo en la programación.",
   },
   {
     title: "5. Concatenar cadenas de texto",
     code: `let nombre: string = "Juan";
 let saludo: string = "Hola, " + nombre + "!";
 console.log(saludo);`,
-    explanation: "Concatenar cadenas de texto usando el operador +. La concatenación de cadenas es útil para construir mensajes y crear dinámicamente contenido en tus aplicaciones.",
+    explanation:
+      "Concatenar cadenas de texto usando el operador +. La concatenación de cadenas es útil para construir mensajes y crear dinámicamente contenido en tus aplicaciones.",
   },
   {
     title: "6. Uso de plantillas de cadenas (template strings)",
     code: `let edad: number = 25;
 let mensajeEdad: string = \`Tienes \${edad} años.\`;
 console.log(mensajeEdad);`,
-    explanation: "Usa plantillas de cadenas para insertar variables dentro de una cadena de texto. Las plantillas de cadenas permiten una interpolación más flexible y legible en comparación con la concatenación tradicional.",
+    explanation:
+      "Usa plantillas de cadenas para insertar variables dentro de una cadena de texto. Las plantillas de cadenas permiten una interpolación más flexible y legible en comparación con la concatenación tradicional.",
   },
   {
     title: "7. Declarar un arreglo de números",
     code: `let numeros: number[] = [1, 2, 3, 4, 5];
 console.log(numeros);`,
-    explanation: "Declara un arreglo que contiene números. Los arreglos se utilizan para almacenar colecciones de datos, facilitando el manejo y la manipulación de listas de elementos similares.",
+    explanation:
+      "Declara un arreglo que contiene números. Los arreglos se utilizan para almacenar colecciones de datos, facilitando el manejo y la manipulación de listas de elementos similares.",
   },
   {
     title: "8. Acceder a un elemento de un arreglo",
     code: `console.log(numeros[2]);`,
-    explanation: "Accede a un elemento específico de un arreglo usando su índice. Los índices comienzan en 0, por lo que el índice 2 se refiere al tercer elemento del arreglo.",
+    explanation:
+      "Accede a un elemento específico de un arreglo usando su índice. Los índices comienzan en 0, por lo que el índice 2 se refiere al tercer elemento del arreglo.",
   },
   {
     title: "9. Agregar un elemento a un arreglo",
     code: `numeros.push(6);
 console.log(numeros);`,
-    explanation: "Usa el método push para agregar un nuevo elemento al final del arreglo. Este método es útil para modificar el contenido de los arreglos dinámicamente durante la ejecución de tu programa.",
+    explanation:
+      "Usa el método push para agregar un nuevo elemento al final del arreglo. Este método es útil para modificar el contenido de los arreglos dinámicamente durante la ejecución de tu programa.",
   },
   {
     title: "10. Declarar una función simple",
@@ -62,7 +71,8 @@ console.log(numeros);`,
     console.log("¡Hola!");
 }
 saludar();`,
-    explanation: "Declara una función simple que no devuelve ningún valor (void). Las funciones son bloques de código reutilizables que realizan tareas específicas, facilitando la modularidad y la mantenibilidad del código.",
+    explanation:
+      "Declara una función simple que no devuelve ningún valor (void). Las funciones son bloques de código reutilizables que realizan tareas específicas, facilitando la modularidad y la mantenibilidad del código.",
   },
   {
     title: "11. Función con parámetros",
@@ -70,7 +80,8 @@ saludar();`,
     console.log(\`¡Hola, \${nombre}!\`);
 }
 saludarPersona("Ana");`,
-    explanation: "Declara una función que acepta un parámetro y lo utiliza en su cuerpo. Los parámetros permiten que las funciones sean más flexibles y reutilizables. Esto te permite crear funciones que pueden realizar la misma operación en diferentes datos.",
+    explanation:
+      "Declara una función que acepta un parámetro y lo utiliza en su cuerpo. Los parámetros permiten que las funciones sean más flexibles y reutilizables. Esto te permite crear funciones que pueden realizar la misma operación en diferentes datos.",
   },
   {
     title: "12. Función que devuelve un valor",
@@ -78,7 +89,8 @@ saludarPersona("Ana");`,
     return a + b;
 }
 console.log(sumar(2, 3));`,
-    explanation: "Declara una función que recibe dos parámetros y devuelve la suma de ellos. Las funciones que devuelven valores permiten capturar y utilizar el resultado de una operación en otro contexto. Este patrón es esencial para construir operaciones complejas de forma modular.",
+    explanation:
+      "Declara una función que recibe dos parámetros y devuelve la suma de ellos. Las funciones que devuelven valores permiten capturar y utilizar el resultado de una operación en otro contexto. Este patrón es esencial para construir operaciones complejas de forma modular.",
   },
   {
     title: "13. Condicional simple (if statement)",
@@ -88,7 +100,8 @@ if (esMayorDeEdad) {
 } else {
     console.log("No eres mayor de edad.");
 }`,
-    explanation: "Usa una declaración if para ejecutar código condicionalmente. Las declaraciones condicionales son fundamentales para tomar decisiones en tu código en función de diferentes condiciones. Controlar el flujo de tu aplicación en base a condiciones es clave para cualquier lógica.",
+    explanation:
+      "Usa una declaración if para ejecutar código condicionalmente. Las declaraciones condicionales son fundamentales para tomar decisiones en tu código en función de diferentes condiciones. Controlar el flujo de tu aplicación en base a condiciones es clave para cualquier lógica.",
   },
   {
     title: "14. Condicional con varias condiciones (else if)",
@@ -100,16 +113,18 @@ if (edadPersona < 18) {
 } else {
     console.log("Eres mayor de edad.");
 }`,
-    explanation: "Usa else if para agregar condiciones adicionales. Esto te permite manejar múltiples escenarios en tu código, haciendo que las decisiones sean más precisas. Las declaraciones else if amplían la flexibilidad de tus condiciones, cubriendo casos adicionales.",
+    explanation:
+      "Usa else if para agregar condiciones adicionales. Esto te permite manejar múltiples escenarios en tu código, haciendo que las decisiones sean más precisas. Las declaraciones else if amplían la flexibilidad de tus condiciones, cubriendo casos adicionales.",
   },
   {
     title: "15. Uso de for para iterar un arreglo",
-    
+
     code: `const numeros = [1, 2, 3, 4, 5];
 for (let i = 0; i < numeros.length; i++) {
     console.log(numeros[i]);
 }`,
-    explanation: "Itera sobre un arreglo utilizando un bucle for. Este es un enfoque tradicional y flexible para recorrer cada elemento de un arreglo. Los bucles for son esenciales para realizar operaciones repetitivas en colecciones de datos.",
+    explanation:
+      "Itera sobre un arreglo utilizando un bucle for. Este es un enfoque tradicional y flexible para recorrer cada elemento de un arreglo. Los bucles for son esenciales para realizar operaciones repetitivas en colecciones de datos.",
   },
   {
     title: "16. Uso de for...of para iterar un arreglo",
@@ -117,14 +132,16 @@ for (let i = 0; i < numeros.length; i++) {
 for (let numero of numeros) {
     console.log(numero);
 }`,
-    explanation: "Itera sobre un arreglo usando for...of, que es más limpio que un for estándar. Este método proporciona una forma más legible y concisa de recorrer los elementos de un arreglo. for...of es preferido cuando no necesitas el índice del elemento actual.",
+    explanation:
+      "Itera sobre un arreglo usando for...of, que es más limpio que un for estándar. Este método proporciona una forma más legible y concisa de recorrer los elementos de un arreglo. for...of es preferido cuando no necesitas el índice del elemento actual.",
   },
   {
     title: "17. Declarar una variable de tipo any",
     code: `let cualquierCosa: any = "Hola";
 cualquierCosa = 42;
 console.log(cualquierCosa);`,
-    explanation: "Usa any cuando no sabes de antemano qué tipo de valor tendrá una variable. Esto proporciona flexibilidad, pero también puede reducir la seguridad del tipo en tu código. El uso de any debe ser limitado, ya que puede conducir a errores difíciles de detectar.",
+    explanation:
+      "Usa any cuando no sabes de antemano qué tipo de valor tendrá una variable. Esto proporciona flexibilidad, pero también puede reducir la seguridad del tipo en tu código. El uso de any debe ser limitado, ya que puede conducir a errores difíciles de detectar.",
   },
   {
     title: "18. Definir un objeto simple",
@@ -133,22 +150,25 @@ console.log(cualquierCosa);`,
     edad: 30
 };
 console.log(persona);`,
-    explanation: "Declara un objeto con propiedades de diferentes tipos. Los objetos te permiten agrupar datos relacionados en una sola estructura. Definir objetos es esencial para representar entidades complejas en tu aplicación.",
+    explanation:
+      "Declara un objeto con propiedades de diferentes tipos. Los objetos te permiten agrupar datos relacionados en una sola estructura. Definir objetos es esencial para representar entidades complejas en tu aplicación.",
   },
   {
     title: "19. Acceder a propiedades de un objeto",
     code: `console.log(persona.nombre);
 console.log(persona.edad);`,
-    explanation: "Accede a las propiedades de un objeto usando el operador punto. Esto es crucial para interactuar con los valores almacenados en un objeto. Acceder a las propiedades de un objeto permite extraer y utilizar su información en tu código.",
+    explanation:
+      "Accede a las propiedades de un objeto usando el operador punto. Esto es crucial para interactuar con los valores almacenados en un objeto. Acceder a las propiedades de un objeto permite extraer y utilizar su información en tu código.",
   },
   {
     title: "20. Modificar propiedades de un objeto",
     code: `persona.edad = 31;
 console.log(persona.edad);`,
-    explanation: "Modifica el valor de una propiedad de un objeto. Esto te permite actualizar el estado del objeto en respuesta a diferentes eventos o condiciones. Modificar propiedades de un objeto es una operación común en la gestión de datos dinámicos.",
+    explanation:
+      "Modifica el valor de una propiedad de un objeto. Esto te permite actualizar el estado del objeto en respuesta a diferentes eventos o condiciones. Modificar propiedades de un objeto es una operación común en la gestión de datos dinámicos.",
   },
-   // Nivel Intermedio (Ejercicios 21-40)
-   {
+  // Nivel Intermedio (Ejercicios 21-40)
+  {
     title: "21. Crear una interfaz básica",
     code: `interface Usuario {
     nombre: string;
@@ -161,18 +181,23 @@ let usuario: Usuario = {
 };
 
 console.log(usuario);`,
-explanation: "Define una interfaz para especificar la estructura de un objeto. Las interfaces permiten garantizar que un objeto siga una estructura específica, con propiedades y tipos determinados. Utilizar interfaces mejora la claridad del código y ayuda a prevenir errores, asegurando que todos los objetos que implementan la interfaz cumplen con los requisitos establecidos.",
-
+    explanation:
+      "Define una interfaz para especificar la estructura de un objeto. Las interfaces permiten garantizar que un objeto siga una estructura específica, con propiedades y tipos determinados. Utilizar interfaces mejora la claridad del código y ayuda a prevenir errores, asegurando que todos los objetos que implementan la interfaz cumplen con los requisitos establecidos.",
   },
   {
     title: "22. Función que devuelve un objeto",
-    code: `function crearUsuario(nombre: string, edad: number): Usuario {
+    code: `interface Usuario {
+    nombre: string;
+    edad: number;
+}
+function crearUsuario(nombre: string, edad: number): Usuario {
     return { nombre, edad };
 }
 
 let usuario2 = crearUsuario("Pedro", 25);
 console.log(usuario2);`,
-explanation: "Crea una función que retorna un objeto siguiendo una interfaz. Esto permite construir objetos de manera dinámica mientras se asegura que cumplen con la estructura requerida por la interfaz. Definir funciones para retornar objetos es útil para generar datos con una forma consistente y para organizar la creación de instancias de objetos.",
+    explanation:
+      "Crea una función que retorna un objeto siguiendo una interfaz. Esto permite construir objetos de manera dinámica mientras se asegura que cumplen con la estructura requerida por la interfaz. Definir funciones para retornar objetos es útil para generar datos con una forma consistente y para organizar la creación de instancias de objetos.",
   },
   {
     title: "23. Uso de una función anónima",
@@ -181,25 +206,38 @@ explanation: "Crea una función que retorna un objeto siguiendo una interfaz. Es
 };
 
 console.log(multiplicar(4, 5));`,
-explanation: "Utiliza una función anónima, es decir, una función sin nombre, asignada a una variable. Las funciones anónimas son útiles para definir funciones que solo se usan en un contexto específico o cuando no es necesario reutilizarlas. Esta técnica facilita la definición rápida de comportamientos y el paso de funciones como argumentos.",
+    explanation:
+      "Utiliza una función anónima, es decir, una función sin nombre, asignada a una variable. Las funciones anónimas son útiles para definir funciones que solo se usan en un contexto específico o cuando no es necesario reutilizarlas. Esta técnica facilita la definición rápida de comportamientos y el paso de funciones como argumentos.",
   },
   {
     title: "24. Uso de una función flecha",
     code: `let dividir = (a: number, b: number): number => a / b;
 console.log(dividir(10, 2));`,
-explanation: "Emplea una función flecha, una sintaxis compacta para funciones en TypeScript. Las funciones flecha proporcionan una manera más concisa de definir funciones y resuelven problemas con el contexto de `this`. Son ideales para funciones pequeñas y para mantener el código limpio y legible.",
+    explanation:
+      "Emplea una función flecha, una sintaxis compacta para funciones en TypeScript. Las funciones flecha proporcionan una manera más concisa de definir funciones y resuelven problemas con el contexto de `this`. Son ideales para funciones pequeñas y para mantener el código limpio y legible.",
   },
   {
     title: "25. Destructuración de objetos",
-    code: `let { nombre, edad } = usuario;
-console.log(nombre, edad);`,
-explanation: "Extrae valores de un objeto en variables individuales usando destructuración. Esto simplifica el acceso a propiedades específicas de un objeto y mejora la legibilidad del código al evitar el uso repetido de la notación de puntos. La destructuración es una herramienta útil para trabajar con objetos en una forma más organizada y directa.",
+    code: `
+let usuario = {
+  nombre: "Juan",
+  edad: 30,
+};
+
+let { nombre, edad } = usuario;
+console.log(nombre, edad);
+`,
+    explanation:
+      "Extrae valores de un objeto en variables individuales usando destructuración. Esto simplifica el acceso a propiedades específicas de un objeto y mejora la legibilidad del código al evitar el uso repetido de la notación de puntos. La destructuración es una herramienta útil para trabajar con objetos en una forma más organizada y directa.",
   },
   {
     title: "26. Destructuración de arreglos",
-    code: `let [primero, segundo] = numeros;
+    code: `let numeros = [10, 20, 30, 40];
+
+let [primero, segundo] = numeros;
 console.log(primero, segundo);`,
-explanation: "Extrae elementos individuales de un arreglo en variables separadas utilizando destructuración. Esta técnica permite acceder fácilmente a valores específicos dentro de un arreglo y mejora la claridad del código al manejar elementos de manera más explícita y ordenada.",
+    explanation:
+      "Extrae elementos individuales de un arreglo en variables separadas utilizando destructuración. Esta técnica permite acceder fácilmente a valores específicos dentro de un arreglo y mejora la claridad del código al manejar elementos de manera más explícita y ordenada.",
   },
   {
     title: "27. Parámetros opcionales en funciones",
@@ -213,7 +251,8 @@ explanation: "Extrae elementos individuales de un arreglo en variables separadas
 
 saludarOpcional();
 saludarOpcional("Carlos");`,
-    explanation: "Define parámetros opcionales en una función usando el signo `?`. Esto permite que una función pueda ser llamada con menos argumentos de los que se especifican. Los parámetros opcionales proporcionan flexibilidad al permitir que algunos argumentos sean omitidos en la llamada a la función, facilitando su uso en diferentes contextos.",
+    explanation:
+      "Define parámetros opcionales en una función usando el signo `?`. Esto permite que una función pueda ser llamada con menos argumentos de los que se especifican. Los parámetros opcionales proporcionan flexibilidad al permitir que algunos argumentos sean omitidos en la llamada a la función, facilitando su uso en diferentes contextos.",
   },
   {
     title: "28. Usar readonly en una interfaz",
@@ -223,9 +262,9 @@ saludarOpcional("Carlos");`,
 }
 
 let auto: Vehiculo = { marca: "Toyota", modelo: "Corolla" };
-// auto.marca = "Honda"; // Error: 'marca' es de solo lectura
 console.log(auto);`,
-    explanation: "Marca las propiedades de una interfaz como `readonly` para hacerlas inmutables. Esto significa que una vez que un valor es asignado a una propiedad `readonly`, no puede ser modificado. Usar `readonly` ayuda a proteger datos importantes y a asegurar que ciertos valores permanezcan constantes a lo largo de la vida del objeto.",
+    explanation:
+      "Marca las propiedades de una interfaz como `readonly` para hacerlas inmutables. Esto significa que una vez que un valor es asignado a una propiedad `readonly`, no puede ser modificado. Usar `readonly` ayuda a proteger datos importantes y a asegurar que ciertos valores permanezcan constantes a lo largo de la vida del objeto.",
   },
   {
     title: "29. Creación de una clase básica",
@@ -243,11 +282,23 @@ console.log(auto);`,
 
 let perro = new Animal("Perro");
 perro.hacerSonido();`,
-    explanation: "Define una clase con un constructor y un método para encapsular datos y comportamientos. Las clases en TypeScript proporcionan una estructura para crear objetos que tienen propiedades y métodos, permitiendo organizar y reutilizar el código de manera más efectiva en la programación orientada a objetos.",
+    explanation:
+      "Define una clase con un constructor y un método para encapsular datos y comportamientos. Las clases en TypeScript proporcionan una estructura para crear objetos que tienen propiedades y métodos, permitiendo organizar y reutilizar el código de manera más efectiva en la programación orientada a objetos.",
   },
   {
     title: "30. Clases con herencia",
-    code: `class Gato extends Animal {
+    code: `class Animal {
+    nombre: string;
+
+    constructor(nombre: string) {
+        this.nombre = nombre;
+    }
+
+    hacerSonido(): void {
+        console.log("El animal hace un sonido.");
+    }
+}
+    class Gato extends Animal {
     hacerSonido(): void {
         console.log(\`\${this.nombre} maúlla.\`);
     }
@@ -255,7 +306,8 @@ perro.hacerSonido();`,
 
 let gato = new Gato("Gato");
 gato.hacerSonido();`,
-    explanation: "Extiende una clase base para crear una subclase que hereda sus propiedades y métodos. La herencia permite que una clase nueva reutilice y extienda la funcionalidad de una clase existente, promoviendo la reutilización del código y facilitando la creación de estructuras jerárquicas de clases.",
+    explanation:
+      "Extiende una clase base para crear una subclase que hereda sus propiedades y métodos. La herencia permite que una clase nueva reutilice y extienda la funcionalidad de una clase existente, promoviendo la reutilización del código y facilitando la creación de estructuras jerárquicas de clases.",
   },
   // Nivel Avanzado (Ejercicios 41-60)
   {
@@ -263,7 +315,8 @@ gato.hacerSonido();`,
     code: `let direccion = { ciudad: "Lima", pais: "Perú" };
 let nuevaDireccion = { ...direccion, codigoPostal: "15001" };
 console.log(nuevaDireccion);`,
-    explanation: "Utiliza el spread operator (`...`) para copiar y combinar las propiedades de un objeto en uno nuevo. Esto simplifica la creación de nuevos objetos a partir de objetos existentes sin modificar los originales. El spread operator es útil para combinar datos de manera eficiente y mantener la inmutabilidad de los objetos.",
+    explanation:
+      "Utiliza el spread operator (`...`) para copiar y combinar las propiedades de un objeto en uno nuevo. Esto simplifica la creación de nuevos objetos a partir de objetos existentes sin modificar los originales. El spread operator es útil para combinar datos de manera eficiente y mantener la inmutabilidad de los objetos.",
   },
   {
     title: "42. Uso de rest operator en funciones",
@@ -272,7 +325,8 @@ console.log(nuevaDireccion);`,
 }
 
 console.log(sumarTodo(1, 2, 3, 4, 5));`,
-    explanation: "Agrupa múltiples argumentos en un solo parámetro de tipo arreglo usando el rest operator (`...`). Esto permite que una función acepte un número variable de argumentos y simplifica la definición de funciones que necesitan manejar entradas variadas, facilitando su flexibilidad y reutilización.",
+    explanation:
+      "Agrupa múltiples argumentos en un solo parámetro de tipo arreglo usando el rest operator (`...`). Esto permite que una función acepte un número variable de argumentos y simplifica la definición de funciones que necesitan manejar entradas variadas, facilitando su flexibilidad y reutilización.",
   },
   {
     title: "43. Uso de genéricos en funciones",
@@ -282,7 +336,8 @@ console.log(sumarTodo(1, 2, 3, 4, 5));`,
 
 console.log(identidad<string>("Hola"));
 console.log(identidad<number>(123));`,
-    explanation: "Define funciones que trabajan con diferentes tipos de datos utilizando genéricos. Los genéricos permiten que las funciones acepten y devuelvan valores de diversos tipos mientras mantienen la seguridad de tipos. Esto facilita la creación de funciones flexibles y reutilizables que se adaptan a diferentes tipos de datos.",
+    explanation:
+      "Define funciones que trabajan con diferentes tipos de datos utilizando genéricos. Los genéricos permiten que las funciones acepten y devuelvan valores de diversos tipos mientras mantienen la seguridad de tipos. Esto facilita la creación de funciones flexibles y reutilizables que se adaptan a diferentes tipos de datos.",
   },
   {
     title: "44. Uso de Promise",
@@ -291,7 +346,8 @@ console.log(identidad<number>(123));`,
 }
 
 esperar(2000).then(() => console.log("Han pasado 2 segundos"));`,
-    explanation: "Maneja operaciones asincrónicas utilizando promesas (`Promise`). Las promesas permiten representar valores que estarán disponibles en el futuro, facilitando la gestión de operaciones que se completan de manera asincrónica. Esto ayuda a manejar el flujo de código asíncrono de manera estructurada y evita el uso excesivo de callbacks anidados.",
+    explanation:
+      "Maneja operaciones asincrónicas utilizando promesas (`Promise`). Las promesas permiten representar valores que estarán disponibles en el futuro, facilitando la gestión de operaciones que se completan de manera asincrónica. Esto ayuda a manejar el flujo de código asíncrono de manera estructurada y evita el uso excesivo de callbacks anidados.",
   },
   {
     title: "45. Uso de async/await",
@@ -302,7 +358,8 @@ esperar(2000).then(() => console.log("Han pasado 2 segundos"));`,
 }
 
 procesar();`,
-    explanation: "Simplifica el manejo de promesas utilizando la sintaxis `async/await`. Al marcar una función como `async` y usar `await` para esperar la resolución de promesas, puedes escribir código asíncrono que se comporta de manera más similar al código sincrónico, mejorando la legibilidad y el manejo de errores en operaciones asíncronas.",
+    explanation:
+      "Simplifica el manejo de promesas utilizando la sintaxis `async/await`. Al marcar una función como `async` y usar `await` para esperar la resolución de promesas, puedes escribir código asíncrono que se comporta de manera más similar al código sincrónico, mejorando la legibilidad y el manejo de errores en operaciones asíncronas.",
   },
   {
     title: "46. Definir un enum",
@@ -314,7 +371,8 @@ procesar();`,
 
 let colorFavorito: Color = Color.Verde;
 console.log(colorFavorito);`,
-    explanation: "Crea un conjunto de constantes con nombres significativos usando un `enum`. Los enumerados proporcionan una forma estructurada de representar un conjunto de valores relacionados, mejorando la legibilidad del código y facilitando la gestión de opciones predefinidas en lugar de usar valores literales.",
+    explanation:
+      "Crea un conjunto de constantes con nombres significativos usando un `enum`. Los enumerados proporcionan una forma estructurada de representar un conjunto de valores relacionados, mejorando la legibilidad del código y facilitando la gestión de opciones predefinidas en lugar de usar valores literales.",
   },
   {
     title: "47. Uso de interface con readonly y propiedades opcionales",
@@ -326,7 +384,8 @@ console.log(colorFavorito);`,
 
 let punto3D: Punto3D = { x: 10, y: 20 };
 console.log(punto3D);`,
-    explanation: "Combina `readonly` y propiedades opcionales en una interfaz para definir estructuras de datos más flexibles y seguras. El modificador `readonly` asegura que ciertas propiedades no puedan cambiar después de su inicialización, mientras que las propiedades opcionales (`?`) permiten que algunos valores sean omitidos en la definición del objeto.",
+    explanation:
+      "Combina `readonly` y propiedades opcionales en una interfaz para definir estructuras de datos más flexibles y seguras. El modificador `readonly` asegura que ciertas propiedades no puedan cambiar después de su inicialización, mientras que las propiedades opcionales (`?`) permiten que algunos valores sean omitidos en la definición del objeto.",
   },
   {
     title: "48. Crear un tipo de unión complejo",
@@ -334,7 +393,8 @@ console.log(punto3D);`,
 
 let estadoUsuario: Estado = "activo";
 console.log(estadoUsuario);`,
-    explanation: "Define un tipo de unión que permite que una variable tenga uno de varios tipos específicos. Los tipos de unión son útiles para manejar variables que pueden tener diferentes formas o valores, proporcionando un control más preciso sobre los posibles valores y mejorando la validación de tipos en el código.",
+    explanation:
+      "Define un tipo de unión que permite que una variable tenga uno de varios tipos específicos. Los tipos de unión son útiles para manejar variables que pueden tener diferentes formas o valores, proporcionando un control más preciso sobre los posibles valores y mejorando la validación de tipos en el código.",
   },
   {
     title: "49. Uso avanzado de type",
@@ -345,7 +405,8 @@ type Moto = VehiculoBase & { tieneManillar: boolean };
 let miCoche: Coche = { ruedas: 4, puertas: 4 };
 let miMoto: Moto = { ruedas: 2, tieneManillar: true };
 console.log(miCoche, miMoto);`,
-    explanation: "Combina varios tipos usando `type` para crear tipos compuestos más complejos. El uso de `type` permite definir tipos que combinan propiedades de múltiples interfaces o tipos, facilitando la creación de estructuras de datos ricas y reutilizables en tu aplicación.",
+    explanation:
+      "Combina varios tipos usando `type` para crear tipos compuestos más complejos. El uso de `type` permite definir tipos que combinan propiedades de múltiples interfaces o tipos, facilitando la creación de estructuras de datos ricas y reutilizables en tu aplicación.",
   },
   {
     title: "50. Uso de interface con extends",
@@ -359,7 +420,8 @@ interface Perro extends Animal {
 
 let miPerro: Perro = { nombre: "Max", raza: "Labrador" };
 console.log(miPerro);`,
-    explanation: "Extiende una interfaz para heredar propiedades de otra interfaz. Esto permite construir nuevas interfaces basadas en interfaces existentes, agregando o modificando propiedades según sea necesario. La herencia de interfaces fomenta la reutilización y la extensión de definiciones de tipos en un sistema de tipos más robusto.",
+    explanation:
+      "Extiende una interfaz para heredar propiedades de otra interfaz. Esto permite construir nuevas interfaces basadas en interfaces existentes, agregando o modificando propiedades según sea necesario. La herencia de interfaces fomenta la reutilización y la extensión de definiciones de tipos en un sistema de tipos más robusto.",
   },
   {
     title: "51. Crear una clase abstracta",
@@ -382,7 +444,8 @@ class Cuadrado extends Forma {
 
 let cuadrado = new Cuadrado(4);
 console.log(cuadrado.area());`,
-    explanation: "Define una clase abstracta que sirve como base para otras clases y no puede ser instanciada directamente. Las clases abstractas pueden contener métodos abstractos que deben ser implementados por las subclases. Esto proporciona una estructura para clases derivadas y asegura que ciertos métodos sean definidos en las implementaciones concretas.",
+    explanation:
+      "Define una clase abstracta que sirve como base para otras clases y no puede ser instanciada directamente. Las clases abstractas pueden contener métodos abstractos que deben ser implementados por las subclases. Esto proporciona una estructura para clases derivadas y asegura que ciertos métodos sean definidos en las implementaciones concretas.",
   },
   {
     title: "52. Implementar interfaces en una clase",
@@ -404,7 +467,8 @@ class Circulo implements Dibujo {
 
 let miCirculo = new Circulo(5);
 miCirculo.dibujar();`,
-    explanation: "Implementa una interfaz en una clase para obligar a la clase a definir ciertos métodos. Al implementar una interfaz, una clase se compromete a proporcionar las implementaciones específicas de los métodos y propiedades definidos en la interfaz, asegurando que la clase cumpla con un contrato de comportamiento establecido.",
+    explanation:
+      "Implementa una interfaz en una clase para obligar a la clase a definir ciertos métodos. Al implementar una interfaz, una clase se compromete a proporcionar las implementaciones específicas de los métodos y propiedades definidos en la interfaz, asegurando que la clase cumpla con un contrato de comportamiento establecido.",
   },
   {
     title: "53. Uso de typeof en tipos",
@@ -413,7 +477,8 @@ type NombreTipo = typeof nombre;
 
 let otroNombre: NombreTipo = "Ana";
 console.log(otroNombre);`,
-    explanation: "Utiliza `typeof` para obtener el tipo de una variable y definir un nuevo tipo basado en ella. Esto permite crear tipos que reflejan el tipo de una variable existente, facilitando la creación de tipos que se alinean con las definiciones actuales del código y asegurando consistencia en el uso de tipos.",
+    explanation:
+      "Utiliza `typeof` para obtener el tipo de una variable y definir un nuevo tipo basado en ella. Esto permite crear tipos que reflejan el tipo de una variable existente, facilitando la creación de tipos que se alinean con las definiciones actuales del código y asegurando consistencia en el uso de tipos.",
   },
   {
     title: "54. Uso de keyof en tipos",
@@ -426,7 +491,8 @@ type ClaveUsuario = keyof Usuario;
 
 let clave: ClaveUsuario = "nombre";
 console.log(clave);`,
-    explanation: "Utiliza `keyof` para obtener las claves de un tipo como un tipo de unión de cadenas. Esto permite crear tipos que se basan en las propiedades de otros tipos, proporcionando una manera de referirse a las claves de un tipo específico y facilitando la creación de tipos más dinámicos y flexibles.",
+    explanation:
+      "Utiliza `keyof` para obtener las claves de un tipo como un tipo de unión de cadenas. Esto permite crear tipos que se basan en las propiedades de otros tipos, proporcionando una manera de referirse a las claves de un tipo específico y facilitando la creación de tipos más dinámicos y flexibles.",
   },
   {
     title: "55. Uso de mapped types",
@@ -442,7 +508,8 @@ type UsuarioReadonly = {
 let usuario: UsuarioReadonly = { nombre: "Ana", edad: 30 };
 // usuario.nombre = "Maria"; // Error: 'nombre' es de solo lectura
 console.log(usuario);`,
-    explanation: "Utiliza mapped types para crear nuevos tipos basados en un tipo existente. Los mapped types permiten transformar las propiedades de un tipo original, como hacerlas `readonly`, `optional`, o cambiar sus tipos. Esto proporciona una forma poderosa de derivar nuevos tipos a partir de tipos existentes con modificaciones específicas.",
+    explanation:
+      "Utiliza mapped types para crear nuevos tipos basados en un tipo existente. Los mapped types permiten transformar las propiedades de un tipo original, como hacerlas `readonly`, `optional`, o cambiar sus tipos. Esto proporciona una forma poderosa de derivar nuevos tipos a partir de tipos existentes con modificaciones específicas.",
   },
   {
     title: "56. Uso de conditional types",
@@ -450,7 +517,8 @@ console.log(usuario);`,
 
 type Prueba1 = EsNumero<5>;   // "Es número"
 type Prueba2 = EsNumero<string>; // "No es número"`,
-    explanation: "Define tipos condicionales que evalúan un tipo en función de una condición. Los conditional types permiten crear tipos que varían según las características de otros tipos, proporcionando flexibilidad para definir comportamientos o propiedades condicionales en función de los tipos que se están trabajando.",
+    explanation:
+      "Define tipos condicionales que evalúan un tipo en función de una condición. Los conditional types permiten crear tipos que varían según las características de otros tipos, proporcionando flexibilidad para definir comportamientos o propiedades condicionales en función de los tipos que se están trabajando.",
   },
   {
     title: "57. Crear un tipo con tipos genericos",
@@ -459,7 +527,8 @@ type Prueba2 = EsNumero<string>; // "No es número"`,
 let envueltoNumero: Envuelto<number> = { valor: 42 };
 let envueltoTexto: Envuelto<string> = { valor: "Hola" };
 console.log(envueltoNumero, envueltoTexto);`,
-    explanation: "Define un tipo genérico que puede trabajar con diferentes tipos de datos. Los tipos genéricos permiten crear tipos reutilizables que se adaptan a diversos tipos de datos, proporcionando una mayor flexibilidad y seguridad de tipos en la programación y facilitando la reutilización de tipos en diferentes contextos.",
+    explanation:
+      "Define un tipo genérico que puede trabajar con diferentes tipos de datos. Los tipos genéricos permiten crear tipos reutilizables que se adaptan a diversos tipos de datos, proporcionando una mayor flexibilidad y seguridad de tipos en la programación y facilitando la reutilización de tipos en diferentes contextos.",
   },
   {
     title: "58. Uso de decorators",
@@ -473,7 +542,8 @@ class Persona {
 }
 
 let persona = new Persona("Luis");`,
-    explanation: "Aplica un decorador a una clase para modificar su comportamiento o agregar funcionalidades adicionales. Los decoradores permiten realizar metaprogramación en TypeScript, lo que facilita la adición de lógica y características a las clases sin modificar su implementación directa.",
+    explanation:
+      "Aplica un decorador a una clase para modificar su comportamiento o agregar funcionalidades adicionales. Los decoradores permiten realizar metaprogramación en TypeScript, lo que facilita la adición de lógica y características a las clases sin modificar su implementación directa.",
   },
   {
     title: "59. Uso de namespaces",
@@ -484,7 +554,8 @@ let persona = new Persona("Luis");`,
 }
 
 console.log(Matemáticas.sumar(3, 4));`,
-    explanation: "Organiza y encapsula el código en espacios de nombres (`namespace`) para evitar conflictos de nombres y mejorar la organización del código. Los namespaces permiten agrupar funciones, interfaces y clases relacionadas, facilitando la gestión del código en proyectos grandes y promoviendo la modularidad.",
+    explanation:
+      "Organiza y encapsula el código en espacios de nombres (`namespace`) para evitar conflictos de nombres y mejorar la organización del código. Los namespaces permiten agrupar funciones, interfaces y clases relacionadas, facilitando la gestión del código en proyectos grandes y promoviendo la modularidad.",
   },
   {
     title: "60. Uso de tipos literales",
@@ -492,8 +563,9 @@ console.log(Matemáticas.sumar(3, 4));`,
 
 let diaHoy: DiaDeLaSemana = "viernes";
 console.log(diaHoy);`,
-    explanation: "Define tipos literales que permiten que una variable tenga uno de un conjunto específico de valores. Los tipos literales son útiles para restringir las posibles opciones de una variable a un conjunto predefinido de valores, mejorando la precisión y la claridad del código.",
-  }
+    explanation:
+      "Define tipos literales que permiten que una variable tenga uno de un conjunto específico de valores. Los tipos literales son útiles para restringir las posibles opciones de una variable a un conjunto predefinido de valores, mejorando la precisión y la claridad del código.",
+  },
 ];
 
 const Home: NextPage = () => {

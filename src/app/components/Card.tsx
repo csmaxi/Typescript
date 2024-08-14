@@ -28,7 +28,7 @@ const Card: React.FC<CardProps> = ({ title, code, explanation }) => {
         <h2 className="text-xl font-semibold mb-2">{title}</h2>
         <div className="relative">
           <pre className="bg-gray-100 p-4 rounded-md overflow-x-auto">
-            <code className="font-bold text-sm text-gray-600">{code}</code>
+            <code className="font-thin text-sm text-red-900">{code}</code>
           </pre>
           <button
             onClick={handleCopy}
