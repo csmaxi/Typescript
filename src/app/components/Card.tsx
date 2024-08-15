@@ -1,5 +1,5 @@
-'use client'
-import React, { useState } from 'react';
+"use client";
+import React, { useState } from "react";
 
 interface CardProps {
   title: string;
@@ -11,13 +11,14 @@ const Card: React.FC<CardProps> = ({ title, code, explanation }) => {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(code)
+    navigator.clipboard
+      .writeText(code)
       .then(() => {
         setCopied(true);
         setTimeout(() => setCopied(false), 1000); // Oculta el mensaje después de 1 segundos
       })
-      .catch(err => {
-        console.error('Error al copiar el código: ', err);
+      .catch((err) => {
+        console.error("Error al copiar el código: ", err);
       });
   };
 
