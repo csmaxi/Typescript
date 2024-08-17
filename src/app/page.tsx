@@ -1,7 +1,21 @@
 import type { NextPage } from "next";
 import Card from "./components/Card";
 import Image from "next/image";
-import { exercises } from "@/data/exercises";
+import { variables } from "@/data/variables";
+import { tipos } from "@/data/tipos";
+import { operadores } from "@/data/operadores";
+import { condicionales } from "@/data/condicionales";
+import { bucles } from "@/data/bucles";
+import { funciones } from "@/data/funciones";
+import { arrays } from "@/data/arrays";
+import { objetos } from "@/data/objetos";
+import { interfaces } from "@/data/interfaces";
+import { clases } from "@/data/clases";
+import { enums } from "@/data/enum";
+import { tuplas } from "@/data/tuplas";
+import { genericos } from "@/data/genericos";
+import { union } from "@/data/union";
+
 import {
   Accordion,
   AccordionContent,
@@ -9,17 +23,45 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-const Home: NextPage = () => {
-  const basicExercises = exercises.filter(
-    (exercise) => exercise.level === "basic"
-  );
-  const intermediateExercises = exercises.filter(
-    (exercise) => exercise.level === "intermediate"
-  );
-  const advancedExercises = exercises.filter(
-    (exercise) => exercise.level === "advanced"
-  );
+// Función para agrupar por nivel y tema
+const groupByLevelAndTopic = (data: any[]) => {
+  const grouped: { [key: string]: { [key: string]: any[] } } = {
+    basic: {},
+    intermediate: {},
+    advanced: {},
+  };
 
+  data.forEach(section => {
+    section.content.forEach((item: { level: string | number; }) => {
+      if (!grouped[item.level][section.title]) {
+        grouped[item.level][section.title] = [];
+      }
+      grouped[item.level][section.title].push(item);
+    });
+  });
+
+  return grouped;
+};
+
+// Agrupa los datos
+const groupedData = groupByLevelAndTopic([
+  { title: "Variables", content: variables },
+  { title: "Tipos", content: tipos },
+  { title: "Operadores", content: operadores },
+  { title: "Condicionales", content: condicionales },
+  { title: "Bucles", content: bucles },
+  { title: "Funciones", content: funciones },
+  { title: "Arrays", content: arrays },
+  { title: "Objetos", content: objetos },
+  { title: "Interfaces", content: interfaces },
+  { title: "Clases", content: clases },
+  { title: "Enum", content: enums },
+  { title: "Genericos", content: genericos },
+  { title: "Tuplas", content: tuplas },
+  { title: "Union", content: union },
+]);
+
+const Home: NextPage = () => {
   return (
     <div className="bg-neutral min-h-screen flex flex-col">
       <header className="bg-primary text-white py-6">
@@ -29,80 +71,53 @@ const Home: NextPage = () => {
             alt="TypeScript Logo"
             width={100}
             height={100}
-            className="mb-4 bg-white "
+            className="mb-4 bg-white"
           />
           <h1 className="text-4xl font-bold">Curso de TypeScript</h1>
-          <p className="text-lg mt-2">
-            Aprende TypeScript con ejercicios prácticos.
-          </p>
         </div>
       </header>
-      <main className="flex-grow p-8 bg-gray-100">
-        <div className="max-w-4xl mx-auto">
+      <main className="flex-grow p-8 bg-gray-50">
+        <div className="max-w-3xl mx-auto">
           <Accordion type="single" collapsible>
-            <AccordionItem value="item-1">
-              <AccordionTrigger>
-                <h2 className="text-3xl font-bold mb-6">Ejercicios Básicos</h2>
-              </AccordionTrigger>
-              <AccordionContent>
-                {basicExercises.map((exercise, index) => (
-                  <Card
-                    key={index}
-                    title={exercise.title}
-                    code={exercise.code}
-                    explanation={exercise.explanation}
-                  />
-                ))}
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
-
-          <Accordion type="single" collapsible>
-            <AccordionItem value="item-1">
-              <AccordionTrigger>
-                <h2 className="text-3xl font-bold mb-6">
-                  Ejercicios Intermedios
-                </h2>
-              </AccordionTrigger>
-              <AccordionContent>
-                {intermediateExercises.map((exercise, index) => (
-                  <Card
-                    key={index}
-                    title={exercise.title}
-                    code={exercise.code}
-                    explanation={exercise.explanation}
-                  />
-                ))}
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
-
-          <Accordion type="single" collapsible>
-            <AccordionItem value="item-1">
-              <AccordionTrigger>
-                <h2 className="text-3xl font-bold mb-6">
-                  Ejercicios Avanzados
-                </h2>
-              </AccordionTrigger>
-              <AccordionContent>
-                {advancedExercises.map((exercise, index) => (
-                  <Card
-                    key={index}
-                    title={exercise.title}
-                    code={exercise.code}
-                    explanation={exercise.explanation}
-                  />
-                ))}
-              </AccordionContent>
-            </AccordionItem>
+            {["basic", "intermediate", "advanced"].map(level => (
+              <AccordionItem
+                key={level}
+                value={`item-${level}`}
+                className="mb-4 rounded-lg border border-gray-200 shadow-md bg-white"
+              >
+                <AccordionTrigger className="flex items-center justify-between p-4 text-lg font-semibold text-gray-700 bg-blue-200 hover:bg-blue-100 transition-colors duration-300 rounded-t-lg cursor-pointer">
+                  <h2>{level.charAt(0).toUpperCase() + level.slice(1)}</h2>
+                </AccordionTrigger>
+                <AccordionContent className="p-4">
+                  <Accordion type="single" collapsible>
+                    {Object.entries(groupedData[level]).map(([topic, items]) => (
+                      <AccordionItem
+                        key={topic}
+                        value={`item-${level}-${topic}`}
+                        className="mb-4 rounded-lg border border-gray-200 shadow-md bg-white"
+                      >
+                        <AccordionTrigger className="flex items-center justify-between p-4 text-lg font-semibold text-gray-700 bg-blue-50 hover:bg-blue-100 transition-colors duration-300 rounded-t-lg cursor-pointer">
+                          <h3>{topic}</h3>
+                        </AccordionTrigger>
+                        <AccordionContent className="p-4">
+                          {items.map((item, idx) => (
+                            <Card
+                              key={idx}
+                              title={item.title}
+                              code={item.code}
+                              explanation={item.explanation}
+                            />
+                          ))}
+                        </AccordionContent>
+                      </AccordionItem>
+                    ))}
+                  </Accordion>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
           </Accordion>
         </div>
       </main>
-      <footer className="bg-secondary text-white py-4 mt-8">
-        <div className="max-w-4xl mx-auto text-center">
-          <p>&copy; 2024 Curso de TypeScript. Todos los derechos reservados.</p>
-        </div>
-      </footer>
     </div>
   );
 };

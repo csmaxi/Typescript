@@ -1,8 +1,9 @@
 "use client";
+
 import React, { useState } from "react";
 
 interface CardProps {
-  title: string;
+  title: string | undefined;
   code: string;
   explanation: string;
 }
@@ -15,7 +16,7 @@ const Card: React.FC<CardProps> = ({ title, code, explanation }) => {
       .writeText(code)
       .then(() => {
         setCopied(true);
-        setTimeout(() => setCopied(false), 1000); // Oculta el mensaje después de 1 segundos
+        setTimeout(() => setCopied(false), 2000); // Oculta el mensaje después de 2 segundos
       })
       .catch((err) => {
         console.error("Error al copiar el código: ", err);
@@ -23,23 +24,34 @@ const Card: React.FC<CardProps> = ({ title, code, explanation }) => {
   };
 
   return (
-    <div className="bg-white shadow-lg rounded-lg overflow-hidden mb-8 border border-gray-200">
+    <div className="bg-white shadow-xl rounded-lg overflow-hidden mb-6 border border-gray-300 hover:shadow-2xl transition-shadow duration-300 ease-in-out">
       <div className="p-6 relative">
-        <h2 className="text-2xl font-semibold text-primary mb-3">{title}</h2>
+        <h2 className="text-2xl font-bold text-primary mb-4">{title}</h2>
         <div className="relative">
-          <pre className="bg-gray-900 text-white p-4 rounded overflow-x-auto">
-            <code className="font-mono text-sm">{code}</code>
+          <pre className="bg-gray-900 text-gray-200 p-4 rounded-md overflow-x-auto font-source-code">
+            <code className="text-sm">{code}</code>
           </pre>
           <button
             onClick={handleCopy}
-            className="absolute top-3 right-3 bg-gray-500 text-gray-700 rounded-md p-1 hover:bg-gray-300"
+            className="absolute top-4 right-4 bg-blue-600 text-white rounded-md p-2 hover:bg-blue-500 transition-colors duration-300 ease-in-out"
             title="Copiar al portapapeles"
           >
-            📋
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-5 h-5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M16 5H4v14h12V8l4-4v16h-2V5z"></path>
+            </svg>
           </button>
         </div>
         {copied && (
-          <div className="absolute top-3 right-3 mt-8 bg-red-500 text-white text-sm py-1 px-3 rounded-md shadow-md">
+          <div className="absolute top-4 right-4 mt-10 bg-blue-500 text-white text-sm py-1 px-3 rounded-md shadow-md opacity-100 transition-opacity duration-300 ease-in-out">
             Código copiado!
           </div>
         )}

@@ -19,6 +19,11 @@ export default function RootLayout({
       <body className={inter.className}>
        
         {children}
+        <footer className="bg-secondary text-white py-4 mt-8">
+        <div className="max-w-4xl mx-auto text-center">
+          <p>&copy; 2024 Curso de TypeScript. Todos los derechos reservados.</p>
+        </div>
+      </footer>
       </body>
     </html>
   );
