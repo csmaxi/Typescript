@@ -22,6 +22,12 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { intersecciones } from "@/data/intersecciones";
+import { aliasDeTipo } from "@/data/aliasDeTipo";
+import { modulos } from "@/data/modulos";
+import { decoradores } from "@/data/decoradores";
+import { asyncAwait } from "@/data/asyncAwait";
+import { manejoErrores } from "@/data/manejoErrores";
 
 // Función para agrupar por nivel y tema
 const groupByLevelAndTopic = (data: any[]) => {
@@ -59,6 +65,12 @@ const groupedData = groupByLevelAndTopic([
   { title: "Genericos", content: genericos },
   { title: "Tuplas", content: tuplas },
   { title: "Union", content: union },
+  { title: "Interseccion", content: intersecciones },
+  { title: "Alias", content: aliasDeTipo },
+  { title: "Módulos", content: modulos },
+  // { title: "Decoradores", content: decoradores },
+  { title: "Async/await", content: asyncAwait },
+  { title: "Errores", content: manejoErrores },
 ]);
 
 const Home: NextPage = () => {

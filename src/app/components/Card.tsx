@@ -29,7 +29,7 @@ const Card: React.FC<CardProps> = ({ title, code, explanation }) => {
         <h2 className="text-2xl font-bold text-primary mb-4">{title}</h2>
         <div className="relative">
           <pre className="bg-gray-900 text-gray-200 p-4 rounded-md overflow-x-auto font-source-code">
-            <code className="text-sm">{code}</code>
+            <code className="text-sm font-mono">{code}</code>
           </pre>
           <button
             onClick={handleCopy}

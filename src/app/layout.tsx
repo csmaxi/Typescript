@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "csmaxi-TypesCript",
+  title: "csmaxi-TypeScript",
   description: "Aprende typescript con ejercicios prácticos",
 };
 

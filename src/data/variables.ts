@@ -12,7 +12,7 @@ export const variables = [
   ciudad = "Barcelona";
 	  `,
 	  explanation:
-		"En TypeScript, las variables son contenedores que almacenan datos y pueden cambiar su valor a lo largo del tiempo. Puedes declarar una variable utilizando las palabras clave `let`, `const`, o `var`. `let` se usa para variables que pueden cambiar, `const` para constantes que no cambian, y `var` para variables con un ámbito de función, aunque `var` es menos recomendado en TypeScript.",
+		"En TypeScript, las variables se declaran utilizando `let`, `const`, o `var`. `let` se usa para variables que pueden cambiar, `const` para constantes, y `var` para variables con un ámbito de función. Sin embargo, se recomienda evitar `var` en favor de `let` y `const`.",
 	  level: "basic",
 	},
 	{
@@ -22,9 +22,11 @@ export const variables = [
   let numero = 42;              // Inferido como number
   
   let esActivo = true; // Inferido como boolean
+
+  console.log(mensaje)
 	  `,
 	  explanation:
-		"TypeScript puede inferir el tipo de una variable basándose en el valor que se le asigna durante su declaración. Esto significa que no siempre es necesario especificar el tipo explícitamente, lo que simplifica el código.",
+		"TypeScript puede inferir automáticamente el tipo de una variable basado en el valor asignado. Esto simplifica la sintaxis, aunque puedes especificar el tipo explícitamente si es necesario.",
 	  level: "basic",
 	},
 	{
@@ -35,9 +37,11 @@ export const variables = [
   let esEstudiante: boolean = true;
   
   // nombre = 123; // Esto generará un error porque \`nombre\` es de tipo string
+
+  console.log(nombre)
 	  `,
 	  explanation:
-		"TypeScript soporta varios tipos de datos básicos, como `string`, `number`, `boolean`, entre otros. Puedes declarar variables con tipos específicos para garantizar que solo contengan valores de ese tipo.",
+		"TypeScript soporta tipos básicos como `string`, `number`, y `boolean`. Declarar variables con tipos específicos ayuda a evitar errores al asegurarse de que solo contengan datos del tipo correcto.",
 	  level: "basic",
 	},
 	{
@@ -52,9 +56,11 @@ export const variables = [
 	nombre: "Lucía",
 	edad: 22
   };
+
+  console.log(persona)
 	  `,
 	  explanation:
-		"Además de los tipos básicos, TypeScript permite declarar variables con tipos compuestos, como arrays, tuplas y objetos. Los arrays especifican el tipo de sus elementos, las tuplas tienen un número fijo de elementos con tipos diferentes, y los objetos definen el tipo de cada propiedad.",
+		"Además de los tipos básicos, TypeScript permite crear tipos compuestos como arrays, tuplas y objetos, donde puedes definir los tipos de los elementos o propiedades.",
 	  level: "basic",
 	},
 	{
@@ -69,44 +75,7 @@ export const variables = [
   resultado = "Éxito";
 	  `,
 	  explanation:
-		"TypeScript permite declarar variables que pueden contener más de un tipo de dato utilizando uniones de tipos (`|`). Esto es útil cuando una variable puede tener diferentes tipos de datos, dependiendo del contexto.",
-	  level: "basic",
-	},
-	{
-	  title: "6. Variables y Ámbito (Scope)",
-	  code: `
-  {
-	let mensaje = "Hola!";
-	console.log(mensaje); // "Hola!"
-  }
-  // console.log(mensaje); // Error: mensaje no está definido
-  
-  function ejemplo() {
-	var texto = "Hola desde la función!";
-	console.log(texto);
-  }
-  
-  let saludo = "Hola, Mundo!";
-  function mostrarSaludo() {
-	console.log(saludo);
-  }
-  mostrarSaludo(); // "Hola, Mundo!"
-	  `,
-	  explanation:
-		"El ámbito de una variable define dónde puede ser accesible dentro del código. TypeScript soporta tres tipos de ámbito: bloque, función y global. Las variables declaradas con `let` y `const` tienen un ámbito de bloque, las declaradas con `var` tienen un ámbito de función, y las declaradas fuera de cualquier función o bloque tienen un ámbito global.",
-	  level: "basic",
-	},
-	{
-	  title: "7. Variables con Tipos Literales",
-	  code: `
-  let estado: "activo" | "inactivo";
-  estado = "activo";
-  // estado = "pendiente"; // Error: "pendiente" no es un valor permitido
-  
-  let rol: "admin" | "usuario" | "invitado" = "usuario";
-	  `,
-	  explanation:
-		"Los tipos literales permiten especificar variables que solo pueden contener un valor específico. Esto es útil para definir variables que representan estados o constantes específicas dentro de tu aplicación.",
+		"Las uniones de tipos (`|`) permiten que una variable acepte más de un tipo de dato. Esto es útil cuando el valor de la variable puede variar entre diferentes tipos.",
 	  level: "basic",
 	}
   ];
