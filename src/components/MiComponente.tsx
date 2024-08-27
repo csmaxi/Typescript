@@ -4,14 +4,40 @@ import { JSX, SVGProps } from "react";
 export default function Home() {
   return (
     <div className="w-full">
-      <section className="w-full py-12 md:py-24 lg:py-32">
+      	<section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-r from-primary to-primary/90">
+        <div className="container px-4 md:px-6 text-center mx-auto text-primary-foreground">
+          <div className="space-y-4">
+            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">Aprende TypeScript</h1>
+            <p className="max-w-[700px] mx-auto text-lg md:text-xl">
+              Domina el lenguaje de programación que está transformando el desarrollo web.
+            </p>
+            <div className="flex justify-center gap-4">
+              <Link
+                href="#comenzar"
+                className="inline-flex h-10 items-center justify-center rounded-md bg-primary-foreground px-8 text-sm font-medium text-primary shadow transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 scroll-smooth"
+                prefetch={false}
+              >
+                Comenzar ahora
+              </Link>
+              <Link
+                href="#informacion"
+                className="inline-flex h-10 items-center justify-center rounded-md border border-primary-foreground bg-primary px-8 text-sm font-medium shadow-sm transition-colors hover:bg-primary/90 hover:text-primary-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+                prefetch={false}
+              >
+                Más información
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="w-full py-12 md:py-24 lg:py-32 " id="comenzar">
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
             <div className="grid gap-4 rounded-lg border p-6 bg-background">
               <div className="bg-muted rounded-md flex items-center justify-center aspect-square w-12">
                 <BookIcon className="w-6 h-6 text-muted-foreground" />
               </div>
-              <h3 className="text-xl font-bold">Nivel Básico</h3>
+              <h3 className="text-xl font-bold" >Nivel Básico</h3>
               <p className="text-muted-foreground">
                 Aprende los conceptos fundamentales de TypeScript, incluyendo
                 tipos, variables, operadores y arrays.
@@ -61,7 +87,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-muted">
+      <section className="w-full py-12 md:py-24 lg:py-32 bg-muted" id="informacion">
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
             <div className="grid gap-4">
