@@ -19,12 +19,12 @@ import BackToTop from "@/components/BackToTop";
 function Basico() {
   // Array con todos los datos importados
   const datos = [
-    { title: "Alias", content: aliasDeTipo },
-    { title: "Async/Await", content: asyncAwait },
-    { title: "Intersecciones", content: intersecciones },
-    { title: "Manejo de Errores", content: manejoErrores },
     { title: "Modulos", content: modulos },
     { title: "Union", content: union },
+    { title: "Alias", content: aliasDeTipo },
+    { title: "Async/Await", content: asyncAwait },
+    { title: "Manejo de Errores", content: manejoErrores },
+    { title: "Intersecciones", content: intersecciones },
   ];
 
   return (

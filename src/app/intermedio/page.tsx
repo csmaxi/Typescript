@@ -20,12 +20,12 @@ import BackToTop from "@/components/BackToTop";
 function Basico() {
   // Array con todos los datos importados
   const datos = [
-    { title: "Clases", content: clases },
-    { title: "Enums", content: enums },
-    { title: "Genericos", content: genericos },
-    { title: "Interfaces", content: interfaces },
     { title: "Objetos", content: objetos },
     { title: "Tuplas", content: tuplas },
+    { title: "Interfaces", content: interfaces },
+    { title: "Enums", content: enums },
+    { title: "Clases", content: clases },
+    { title: "Genericos", content: genericos },
     
   ];
 

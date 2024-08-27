@@ -5,8 +5,8 @@ import { bucles } from "@/data/basico/bucles";
 import { condicionales } from "@/data/basico/condicionales";
 import { funciones } from "@/data/basico/funciones";
 import { operadores } from "@/data/basico/operadores";
-import { tipos } from "@/data/basico/tipos";
 import { variables } from "@/data/basico/variables";
+import { cadenas } from "@/data/basico/cadenas";
 
 import {
   Accordion,
@@ -20,8 +20,8 @@ import BackToTop from "@/components/BackToTop";
 function Basico() {
   // Array con todos los datos importados
   const datos = [
-    { title: "Tipos", content: tipos },
     { title: "Variables", content: variables },
+    { title: "Cadenas", content: cadenas },
     { title: "Operadores", content: operadores },
     { title: "Arrays", content: arrays },
     { title: "Condicionales", content: condicionales },
