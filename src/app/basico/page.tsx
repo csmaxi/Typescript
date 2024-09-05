@@ -34,7 +34,7 @@ function Basico() {
   return (
     <>
         <Link href="/">
-        <div className="container h-12 ">
+        <div className="container h-12 my-8">
           <Button>
             {/* SVG de flecha de retroceso */}
             <svg
@@ -56,6 +56,7 @@ function Basico() {
         </div>
       </Link>
       <div className="max-w-4xl mx-auto p-6 min-h-screen bg-gradient-to-r from-blue-50 via-white to-blue-50">
+        
         <h1 className="text-4xl font-extrabold text-center text-gray-800 mb-10">
           Nivel Básico
         </h1>

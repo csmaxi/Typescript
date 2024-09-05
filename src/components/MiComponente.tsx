@@ -4,12 +4,15 @@ import { JSX, SVGProps } from "react";
 export default function Home() {
   return (
     <div className="w-full">
-      	<section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-r from-primary to-primary/90">
+      <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-r from-primary to-primary/90">
         <div className="container px-4 md:px-6 text-center mx-auto text-primary-foreground">
           <div className="space-y-4">
-            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">Aprende TypeScript</h1>
+            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
+              Aprende TypeScript
+            </h1>
             <p className="max-w-[700px] mx-auto text-lg md:text-xl">
-              Domina el lenguaje de programación que está transformando el desarrollo web.
+              Domina el lenguaje de programación que está transformando el
+              desarrollo web.
             </p>
             <div className="flex justify-center gap-4">
               <Link
@@ -37,10 +40,10 @@ export default function Home() {
               <div className="bg-muted rounded-md flex items-center justify-center aspect-square w-12">
                 <BookIcon className="w-6 h-6 text-muted-foreground" />
               </div>
-              <h3 className="text-xl font-bold" >Nivel Básico</h3>
+              <h3 className="text-xl font-bold">Nivel Básico</h3>
               <p className="text-muted-foreground">
                 Aprende los conceptos fundamentales de TypeScript, incluyendo
-                tipos, variables, operadores y arrays.
+                variables, cadenas y operadores.
               </p>
               <Link
                 href="/basico"
@@ -87,7 +90,10 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-muted" id="informacion">
+      <section
+        className="w-full py-12 md:py-24 lg:py-32 bg-muted"
+        id="informacion"
+      >
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
             <div className="grid gap-4">

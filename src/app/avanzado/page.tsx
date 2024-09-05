@@ -32,7 +32,7 @@ function Basico() {
   return (
     <>
       <Link href="/">
-        <div className="container h-12 ">
+        <div className="container h-12 my-8">
           <Button>
             {/* SVG de flecha de retroceso */}
             <svg

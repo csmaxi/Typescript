@@ -55,7 +55,7 @@ const Card: React.FC<CardProps> = ({ title, code, explanation }) => {
             Código copiado!
           </div>
         )}
-        <p className="mt-4 text-gray-700">{explanation}</p>
+        <p className="mt-4 text-gray-700 text-sm lg:text-lg">{explanation}</p>
       </div>
     </div>
   );
