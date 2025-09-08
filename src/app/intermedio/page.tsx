@@ -16,6 +16,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import Card from "@/components/Card";
+import InteractiveCard from "@/components/InteractiveCard";
 import BackToTop from "@/components/BackToTop";
 
 function Basico() {
@@ -101,11 +102,12 @@ function Basico() {
                         <span>{item.title}</span>
                       </div>
                     </AccordionTrigger>
-                    <AccordionContent className="p-0 bg-white rounded-b-lg">
-                      <Card
+                    <AccordionContent className="p-4 bg-white rounded-b-lg">
+                      <InteractiveCard
                         title={item.title}
                         code={item.code}
                         explanation={item.explanation}
+                        enableInteractive={true}
                       />
                     </AccordionContent>
                   </AccordionItem>

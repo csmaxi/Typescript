@@ -35,6 +35,14 @@ export default function Home() {
                 </svg>
               </Link>
               <Link
+                href="/playground"
+                className="group inline-flex h-12 items-center justify-center rounded-lg border-2 border-white/30 bg-white/10 backdrop-blur-sm text-white px-8 text-lg font-semibold shadow-lg transition-all duration-300 hover:bg-white/20 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
+                prefetch={false}
+              >
+                <span className="mr-2">🎮</span>
+                Playground
+              </Link>
+              <Link
                 href="#informacion"
                 className="group inline-flex h-12 items-center justify-center rounded-lg border-2 border-white/30 bg-white/10 backdrop-blur-sm text-white px-8 text-lg font-semibold shadow-lg transition-all duration-300 hover:bg-white/20 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
                 prefetch={false}
