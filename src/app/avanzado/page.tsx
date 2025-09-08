@@ -53,34 +53,55 @@ function Basico() {
           </Button>
         </div>
       </Link>
-      <div className="max-w-4xl mx-auto p-6 min-h-screen bg-gradient-to-r from-blue-50 via-white to-blue-50">
-        <h1 className="text-4xl font-extrabold text-center text-gray-800 mb-10">
-          Nivel Avanzado
-        </h1>
+      <div className="max-w-5xl mx-auto p-6 min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-purple-100">
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center justify-center w-20 h-20 bg-purple-100 rounded-full mb-6">
+            <span className="text-3xl">🚀</span>
+          </div>
+          <div className="inline-flex items-center px-4 py-2 bg-purple-100 text-purple-800 rounded-full text-sm font-medium mb-4">
+            ⭐⭐⭐ Nivel Avanzado
+          </div>
+          <h1 className="text-5xl font-extrabold text-purple-800 mb-4">
+            Nivel Avanzado
+          </h1>
+          <p className="text-xl text-purple-700 max-w-2xl mx-auto">
+            Domina las técnicas más sofisticadas de TypeScript
+          </p>
+        </div>
 
-        <Accordion type="single" collapsible>
+        <Accordion type="single" collapsible className="space-y-6">
           {datos.map(({ title, content }, index) => (
             <AccordionItem
               key={index}
               value={`item-${index + 1}`}
-              className="mb-5 border border-gray-200 rounded-lg bg-white shadow-lg transition-shadow duration-300 hover:shadow-xl"
+              className="border-2 border-purple-200 rounded-xl bg-white shadow-lg transition-all duration-300 hover:shadow-xl hover:border-purple-300"
             >
-              <AccordionTrigger className="flex items-center justify-between p-4 text-lg font-semibold text-gray-800 bg-gray-100 hover:bg-gray-200 rounded-t-lg cursor-pointer transition-colors duration-300">
-                <span>{title}</span>
+              <AccordionTrigger className="flex items-center justify-between p-6 text-xl font-bold text-purple-800 bg-gradient-to-r from-purple-50 to-pink-50 hover:from-purple-100 hover:to-pink-100 rounded-t-xl cursor-pointer transition-all duration-300 group">
+                <div className="flex items-center">
+                  <span className="mr-3 text-2xl">🎓</span>
+                  <span>{title}</span>
+                </div>
+                <div className="flex items-center">
+                  <span className="text-sm bg-purple-100 text-purple-700 px-3 py-1 rounded-full mr-3">
+                    {content.length} ejercicios
+                  </span>
+                </div>
               </AccordionTrigger>
-              <AccordionContent className="p-4 border-t border-gray-200 bg-gray-50">
-                <Accordion type="single" collapsible>
+              <AccordionContent className="p-6 border-t-2 border-purple-100 bg-purple-50/30">
+                <Accordion type="single" collapsible className="space-y-4">
                   {content.map((item, subIndex) => (
                     <AccordionItem
                       key={subIndex}
                       value={`subitem-${subIndex + 1}`}
-                      className="mb-3 border border-gray-200 rounded-lg bg-white shadow transition-shadow duration-300 hover:shadow-md"
+                      className="border border-purple-200 rounded-lg bg-white shadow-md transition-all duration-300 hover:shadow-lg hover:border-purple-300"
                     >
-                      <AccordionTrigger className="flex items-center justify-between p-3 text-md font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-t-lg cursor-pointer transition-colors duration-300">
-                        <span>{item.title}</span>
+                      <AccordionTrigger className="flex items-center justify-between p-4 text-lg font-semibold text-purple-700 bg-purple-50 hover:bg-purple-100 rounded-t-lg cursor-pointer transition-all duration-300">
+                        <div className="flex items-center">
+                          <span className="mr-2 text-purple-600">▶</span>
+                          <span>{item.title}</span>
+                        </div>
                       </AccordionTrigger>
-                      <AccordionContent className="p-4 bg-white">
-                        {/* Usar el componente Card para mostrar el contenido */}
+                      <AccordionContent className="p-0 bg-white rounded-b-lg">
                         <Card
                           title={item.title}
                           code={item.code}
