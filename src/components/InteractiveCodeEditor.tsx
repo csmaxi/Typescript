@@ -23,29 +23,60 @@ const InteractiveCodeEditor: React.FC<InteractiveCodeEditorProps> = ({
   const checkTypeScriptErrors = (code: string): string[] => {
     const errors: string[] = [];
     
-    // Verificaciones básicas de sintaxis TypeScript
-    if (code.includes("let ") && !code.includes(":")) {
-      // Permitir inferencia de tipos, no siempre es error
-    }
+    // Limpiar código eliminando comentarios
+    const lines = code.split('\n');
+    const cleanLines: { content: string; originalIndex: number }[] = [];
     
-    // Verificar strings sin comillas
-    const stringRegex = /let\s+\w+\s*=\s*[^"'`\n;]+(?!["\s])/g;
-    if (stringRegex.test(code) && !code.includes('"') && !code.includes("'")) {
-      errors.push("Error: Los strings deben estar entre comillas");
-    }
-    
-    // Verificar punto y coma faltante
-    const lines = code.split('\n').filter(line => line.trim() !== '');
     lines.forEach((line, index) => {
-      if (line.trim() && 
-          !line.trim().endsWith(';') && 
-          !line.trim().endsWith('{') && 
-          !line.trim().endsWith('}') &&
-          !line.trim().startsWith('//') &&
-          !line.trim().startsWith('/*')) {
-        errors.push(`Línea ${index + 1}: Posible punto y coma faltante`);
+      // Remover comentarios inline y limpiar
+      const cleaned = line.replace(/\/\/.*$/, '').trim();
+      
+      // Solo agregar líneas que tienen contenido y no son comentarios
+      if (cleaned.length > 0 && 
+          !line.trim().startsWith('//') && 
+          !line.trim().startsWith('/*') &&
+          !line.trim().startsWith('*/')) {
+        cleanLines.push({ content: cleaned, originalIndex: index });
       }
     });
+    
+    // Verificar punto y coma faltante solo en líneas que realmente lo necesitan
+    cleanLines.forEach(({ content, originalIndex }) => {
+      const line = content;
+      
+      // Casos donde SÍ necesitamos punto y coma
+      const needsSemicolon = (
+        // Declaraciones de variables
+        line.match(/^(let|const|var)\s+\w+.*=.*[^{};]$/) ||
+        // Llamadas a console.log
+        line.match(/console\.log\([^)]*\)[^;]*$/) ||
+        // Asignaciones
+        line.match(/^\w+\s*=\s*[^{};]+$/)
+      );
+      
+      // Casos donde NO necesitamos punto y coma
+      const doesntNeedSemicolon = (
+        line.endsWith(';') ||
+        line.endsWith('{') ||
+        line.endsWith('}') ||
+        line.endsWith(')') ||
+        line.includes('function ') ||
+        line.includes('=>') ||
+        line.match(/^(if|for|while|switch|try|catch|finally)/) ||
+        line.trim() === ''
+      );
+      
+      if (needsSemicolon && !doesntNeedSemicolon) {
+        errors.push(`Línea ${originalIndex + 1}: Posible punto y coma faltante`);
+      }
+    });
+
+    // Verificar strings mal formados
+    const codeWithoutComments = code.replace(/\/\/.*$/gm, '');
+    const stringErrors = codeWithoutComments.match(/(?:let|const|var)\s+\w+\s*:\s*string\s*=\s*[^"'`;\s]+/g);
+    if (stringErrors) {
+      errors.push("Error: Los strings deben estar entre comillas");
+    }
 
     return errors;
   };
@@ -68,29 +99,125 @@ const InteractiveCodeEditor: React.FC<InteractiveCodeEditorProps> = ({
         }
 
         // Simular ejecución del código
-        const mockConsole: string[] = [];
         const lines = code.split('\n');
+        const results: string[] = [];
         
-        lines.forEach(line => {
+        // Crear un contexto de variables
+        const variables: { [key: string]: any } = {};
+        
+        // Filtrar comentarios primero
+        const cleanLines = lines.map(line => {
+          return line.replace(/\/\/.*$/, '').trim();
+        }).filter(line => line.length > 0 && !line.startsWith('/*'));
+        
+        // Procesar declaraciones de variables (con y sin tipos explícitos)
+        cleanLines.forEach(line => {
+          const trimmedLine = line.trim();
+          
+          // Variables con tipos explícitos
+          const typedVarMatch = trimmedLine.match(/(?:let|const)\s+(\w+)\s*:\s*(\w+)\s*=\s*(.+);?/);
+          if (typedVarMatch) {
+            const [, varName, varType, varValue] = typedVarMatch;
+            let value: any = varValue.trim();
+            
+            // Procesar el valor según el tipo
+            if (varType === 'string') {
+              value = value.replace(/^['"]|['"]$/g, '').replace(/\\n/g, '\n').replace(/\\t/g, '\t');
+            } else if (varType === 'number') {
+              value = parseFloat(value as string) || 0;
+            } else if (varType === 'boolean') {
+              value = value === 'true';
+            }
+            
+            variables[varName] = value;
+          }
+          
+          // Variables con tipos inferidos
+          const inferredVarMatch = trimmedLine.match(/(?:let|const)\s+(\w+)\s*=\s*(.+);?/);
+          if (inferredVarMatch && !typedVarMatch) {
+            const [, varName, varValue] = inferredVarMatch;
+            let value = varValue.trim();
+            
+            try {
+              if (value.startsWith('"') || value.startsWith("'") || value.startsWith('`')) {
+                // String inferido
+                variables[varName] = value.replace(/^['"`]|['"`]$/g, '');
+              } else if (!isNaN(parseFloat(value)) && isFinite(parseFloat(value))) {
+                // Number inferido
+                variables[varName] = parseFloat(value);
+              } else if (value === 'true' || value === 'false') {
+                // Boolean inferido
+                variables[varName] = value === 'true';
+              } else {
+                // Valor por defecto
+                variables[varName] = value.replace(/['"]/g, '');
+              }
+            } catch (e) {
+              variables[varName] = value.replace(/['"]/g, '');
+            }
+          }
+        });
+        
+        // Procesar console.log con múltiples parámetros
+        cleanLines.forEach(line => {
           if (line.includes('console.log')) {
             const match = line.match(/console\.log\(([^)]+)\)/);
             if (match) {
-              let value = match[1].trim();
+              // Parsear múltiples parámetros
+              const params = [];
+              let currentParam = '';
+              let inQuotes = false;
+              let quoteChar = '';
               
-              // Evaluar variables simples
-              if (code.includes(`let ${value}`) || code.includes(`const ${value}`)) {
-                const varMatch = code.match(new RegExp(`(?:let|const)\\s+${value}\\s*=\\s*([^;\\n]+)`));
-                if (varMatch) {
-                  value = varMatch[1].trim().replace(/['"]/g, '');
+              for (let i = 0; i < match[1].length; i++) {
+                const char = match[1][i];
+                
+                if ((char === '"' || char === "'" || char === '`') && !inQuotes) {
+                  inQuotes = true;
+                  quoteChar = char;
+                  currentParam += char;
+                } else if (char === quoteChar && inQuotes) {
+                  inQuotes = false;
+                  quoteChar = '';
+                  currentParam += char;
+                } else if (char === ',' && !inQuotes) {
+                  params.push(currentParam.trim());
+                  currentParam = '';
+                } else {
+                  currentParam += char;
                 }
               }
               
-              mockConsole.push(`> ${value.replace(/['"]/g, '')}`);
+              if (currentParam.trim()) {
+                params.push(currentParam.trim());
+              }
+
+              const output = params.map(param => {
+                // Variable
+                if (variables.hasOwnProperty(param)) {
+                  const value = variables[param];
+                  return String(value);
+                }
+                // String literal
+                else if (param.startsWith('"') || param.startsWith("'")) {
+                  return param.replace(/^['"`]|['"`]$/g, '');
+                }
+                // Número
+                else if (!isNaN(parseFloat(param))) {
+                  return param;
+                }
+                // Valor por defecto
+                else {
+                  return param.replace(/['"]/g, '');
+                }
+              }).join(' ');
+              
+              results.push(`> ${output}`);
             }
           }
         });
 
-        setOutput(mockConsole.length > 0 ? mockConsole : ['// Código ejecutado exitosamente']);
+        setOutput(results.length > 0 ? results : ['// Código ejecutado exitosamente']);
       } catch (error) {
         setErrors([`Error de ejecución: ${error instanceof Error ? error.message : 'Error desconocido'}`]);
       }

@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import InteractiveCodeEditor from "@/components/InteractiveCodeEditor";
+import SimpleCodeEditor from "@/components/SimpleCodeEditor";
 
 const playgroundExamples = [
   {
@@ -12,11 +12,20 @@ const playgroundExamples = [
     code: `// Tipos básicos en TypeScript
 let mensaje: string = "¡Hola TypeScript!";
 let numero: number = 42;
+let decimal: number = 3.14;
 let esVerdadero: boolean = true;
+let esFalso: boolean = false;
 
-console.log(mensaje);
-console.log("El número es:", numero);
-console.log("¿Es verdadero?", esVerdadero);`,
+// Imprimir todos los valores
+console.log("Mensaje:", mensaje);
+console.log("Número entero:", numero);
+console.log("Número decimal:", decimal);
+console.log("¿Es verdadero?", esVerdadero);
+console.log("¿Es falso?", esFalso);
+
+// Operaciones matemáticas
+console.log("Suma:", numero + decimal);
+console.log("Multiplicación:", numero * 2);`,
     description: "Experimenta con variables y tipos básicos"
   },
   {
@@ -31,11 +40,18 @@ function sumar(a: number, b: number): number {
     return a + b;
 }
 
+function multiplicar(x: number, y: number): number {
+    return x * y;
+}
+
+// Usar las funciones
 let saludo = saludar("TypeScript");
-let resultado = sumar(10, 20);
+let suma = sumar(10, 20);
+let producto = multiplicar(5, 8);
 
 console.log(saludo);
-console.log("10 + 20 =", resultado);`,
+console.log("10 + 20 =", suma);
+console.log("5 * 8 =", producto);`,
     description: "Crea y usa funciones tipadas"
   },
   {
@@ -44,16 +60,23 @@ console.log("10 + 20 =", resultado);`,
     code: `// Arrays tipados
 let numeros: number[] = [1, 2, 3, 4, 5];
 let frutas: string[] = ["manzana", "banana", "naranja"];
+let colores: string[] = ["rojo", "verde", "azul"];
 
 // Métodos de arrays
 numeros.push(6);
 console.log("Números:", numeros);
+console.log("Longitud del array:", numeros.length);
 
+// Iteración con forEach
+console.log("--- Lista de frutas ---");
 frutas.forEach(fruta => {
     console.log("Fruta:", fruta);
 });
 
-console.log("Primera fruta:", frutas[0]);`,
+// Acceso por índice
+console.log("Primera fruta:", frutas[0]);
+console.log("Último número:", numeros[numeros.length - 1]);
+console.log("Segundo color:", colores[1]);`,
     description: "Trabaja con arrays y sus métodos"
   },
   {
@@ -63,26 +86,104 @@ console.log("Primera fruta:", frutas[0]);`,
 let persona = {
     nombre: "Juan",
     edad: 25,
-    ciudad: "Madrid"
+    ciudad: "Madrid",
+    activo: true
+};
+
+let producto = {
+    nombre: "Laptop",
+    precio: 999.99,
+    disponible: true
 };
 
 // Acceder a propiedades
+console.log("--- Información de Persona ---");
 console.log("Nombre:", persona.nombre);
 console.log("Edad:", persona.edad);
 console.log("Ciudad:", persona.ciudad);
+console.log("Activo:", persona.activo);
+
+console.log("--- Información de Producto ---");
+console.log("Producto:", producto.nombre);
+console.log("Precio: $", producto.precio);
+console.log("Disponible:", producto.disponible);
 
 // Modificar propiedades
 persona.edad = 26;
-console.log("Nueva edad:", persona.edad);`,
+producto.precio = 899.99;
+console.log("Nueva edad:", persona.edad);
+console.log("Nuevo precio: $", producto.precio);`,
     description: "Define y manipula objetos"
+  },
+  {
+    id: "types",
+    title: "Tipos Avanzados",
+    code: `// Diferentes tipos de datos
+let texto: string = "TypeScript es genial";
+let entero: number = 100;
+let flotante: number = 99.99;
+let verdadero: boolean = true;
+let falso: boolean = false;
+
+// Arrays de diferentes tipos
+let nombres: string[] = ["Ana", "Carlos", "María"];
+let edades: number[] = [25, 30, 28];
+let estados: boolean[] = [true, false, true];
+
+// Mostrar todos los valores
+console.log("=== STRINGS ===");
+console.log(texto);
+nombres.forEach(nombre => {
+    console.log("Nombre:", nombre);
+});
+
+console.log("=== NUMBERS ===");
+console.log("Entero:", entero);
+console.log("Flotante:", flotante);
+edades.forEach(edad => {
+    console.log("Edad:", edad);
+});
+
+console.log("=== BOOLEANS ===");
+console.log("Verdadero:", verdadero);
+console.log("Falso:", falso);
+estados.forEach(estado => {
+    console.log("Estado:", estado);
+});`,
+    description: "Explora diferentes tipos de datos"
+  },
+  {
+    id: "inferred",
+    title: "Tipos Inferidos",
+    code: `// Variables con tipos inferidos (sin especificar tipo)
+let edad = 25; // Tipo inferido como number
+let nombre = "Ana"; // Tipo inferido como string
+let activo = true; // Tipo inferido como boolean
+let precio = 99.99; // Tipo inferido como number
+
+// TypeScript infiere automáticamente el tipo
+console.log("Edad:", edad);
+console.log("Nombre:", nombre);
+console.log("Activo:", activo);
+console.log("Precio:", precio);
+
+// También funciona en una sola línea
+console.log(edad, nombre);`,
+    description: "Experimenta con inferencia de tipos automática"
   },
   {
     id: "custom",
     title: "Código Libre",
     code: `// ¡Escribe tu propio código TypeScript aquí!
-let miVariable: string = "Tu código aquí";
+let miVariable = "Tu código aquí"; // Tipo inferido
+let miNumero = 123; // Tipo inferido
+let miArray = ["elemento1", "elemento2"]; // Tipo inferido
 
-console.log(miVariable);`,
+console.log(miVariable);
+console.log("Número:", miNumero);
+console.log("Array:", miArray);
+
+// Prueba diferentes tipos de datos y operaciones`,
     description: "Experimenta con tu propio código"
   }
 ];
@@ -184,7 +285,7 @@ function PlaygroundPage() {
               <p className="text-gray-600">{selectedExample.description}</p>
             </div>
 
-            <InteractiveCodeEditor
+            <SimpleCodeEditor
               key={selectedExample.id} // Force re-render when example changes
               initialCode={selectedExample.code}
               title={selectedExample.title}
